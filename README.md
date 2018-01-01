@@ -1,3 +1,3 @@
 # Neural-Style-Transfer
 ## Screenshots
-![ScreenShot1](./Output/Output4/output.jpg =300x200)
+<img src="./Output/Output4/output.jpg" alt="ScreenShot" width="300" height="200">
