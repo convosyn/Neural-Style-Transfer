@@ -97,13 +97,13 @@ class NeuralStyle:
 
 		loss = backend.variable(0.)
 
-		layer_features = layers['block2_conv2']
+		layer_features = layers['block3_conv3']
 		content_image_features = layer_features[0, :, :, :]
 		combination_features = layer_features[2, :, :, :]
 
 		loss += self.content_weight * self.content_loss(content_image_features, combination_features)
 
-		feature_layers = ['block1_conv2', 'block2_conv2', 'block3_conv3', 'block4_conv3', 'block5_conv3']
+		feature_layers = ['block1_conv1', 'block2_conv1', 'block3_conv1', 'block4_conv1', 'block5_conv1']
 		#feature_layers = ['block3_conv1', 'block3_conv3', 'block4_conv3', 'block5_conv1', 'block5_conv3']
 
 		for layer_name in feature_layers:
@@ -129,7 +129,7 @@ class NeuralStyle:
 
 
 		for i in range(self.number_of_iterations):
-			if i%5 == 0:
+			if i%10 == 0:
 				self.showResult(x)
 			print("Start of iteration: ", i)
 			start_time = time.time()
