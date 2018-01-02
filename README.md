@@ -1,6 +1,10 @@
 # Neural-Style-Transfer
 Using Deep Learning and CNNs for Artistic Imaging.
 Based on [Gatys et al.](https://arxiv.org/pdf/1508.06576.pdf) research paper and [Harish Narayanan](https://harishnarayanan.org/writing/artistic-style-transfer/) tutorial on Neural Style Transfer 
+## Usage:
+To use type `python NeuralStyle.py <path-to-content-image> <path-to-style-image>`
+
+For More Parameters Read `NeuralStyle.py`
 ## Screenshots
 <img style="float:left;" src="./Output/Output5/output.jpg" alt="ScreenShot" width="540" height="420" />
 <img style="float:left;" src="./Output/Output5/content_image_5.jpg" alt="ScreenShot" width="180" height="120" />
