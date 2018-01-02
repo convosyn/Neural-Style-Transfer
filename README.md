@@ -1,4 +1,6 @@
 # Neural-Style-Transfer
+Using Deep Learning and CNNs for Artistic Imaging.
+Based on [Gatys et al.](https://arxiv.org/pdf/1508.06576.pdf) research paper and [Harish Narayanan](https://harishnarayanan.org/writing/artistic-style-transfer/) tutorial on Neural Style Transfer 
 ## Screenshots
 <img style="float:left;" src="./Output/Output5/output.jpg" alt="ScreenShot" width="540" height="420" />
 <img style="float:left;" src="./Output/Output5/content_image_5.jpg" alt="ScreenShot" width="180" height="120" />
