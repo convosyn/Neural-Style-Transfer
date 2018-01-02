@@ -6,12 +6,12 @@ To use type `python NeuralStyle.py <path-to-content-image> <path-to-style-image>
 
 For More Parameters Read `NeuralStyle.py`
 ## Screenshots
-<img style="float:left;" src="./Output/Output7/output.jpg" alt="ScreenShot" width="540" height="420" />
+<img style="float:left;" src="./Output/Output7/output.jpg" alt="ScreenShot" width="360" height="280" />
 <img style="float:left;" src="./Output/Output7/content_image_7.jpg" alt="ScreenShot" width="180" height="120" />
 <img style="float: left;" src="./Output/Output7/style_image_3.jpg" alt="ScreenShot" width="180" height="120" />
-<img style="float:left;" src="./Output/Output5/output.jpg" alt="ScreenShot" width="540" height="420" />
+<img style="float:left;" src="./Output/Output5/output.jpg" alt="ScreenShot" width="360" height="280" />
 <img style="float:left;" src="./Output/Output5/content_image_5.jpg" alt="ScreenShot" width="180" height="120" />
 <img style="float: left;" src="./Output/Output5/style_image_5.jpg" alt="ScreenShot" width="180" height="120" />
-<img style="clear: left;" src="./Output/Output4/output.jpg" alt="ScreenShot" width="540" height="420" />
-<img src="./Output/Output3/output.jpg" alt="ScreenShot" width="540" height="420" />
-<img src="./Output/Output2/result_image_1.png" alt="ScreenShot" width="540" height="420" />
+<img style="clear: left;" src="./Output/Output4/output.jpg" alt="ScreenShot" width="360" height="280" />
+<img src="./Output/Output3/output.jpg" alt="ScreenShot" width="360" height="280" />
+<img src="./Output/Output2/result_image_1.png" alt="ScreenShot" width="360" height="280" />
