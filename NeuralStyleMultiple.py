@@ -93,11 +93,11 @@ class NeuralStyle:
 		input_tensor = backend.concatenate([content_image, style_image, combination_image], axis = 0)
 		model = VGG16(input_tensor = input_tensor, weights = 'imagenet', include_top = False)
 		layers = dict([layer.name, layer.output] for layer in model.layers)
-		print("Layers: \n{!s}".format(layer for layer in layers))
+		print("Layers: \n{!s}".format(layers))
 
 		loss = backend.variable(0.)
 
-		layer_features = layers['block2_conv3']
+		layer_features = layers['block3_conv1']
 		content_image_features = layer_features[0, :, :, :]
 		combination_features = layer_features[2, :, :, :]
 

@@ -97,7 +97,7 @@ class NeuralStyle:
 
 		loss = backend.variable(0.)
 
-		layer_features = layers['block2_conv3']
+		layer_features = layers['block3_conv1']
 		content_image_features = layer_features[0, :, :, :]
 		combination_features = layer_features[2, :, :, :]
 
