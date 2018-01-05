@@ -23,15 +23,14 @@ class NeuralStyle:
 		self.number_of_iterations = int(parameters['iterations'])
 		self.width = int(parameters['width'])
 		self.height = int(parameters['height'])
-		self.red_sub = float(parameters['red_subtract'])
-		self.green_sub = float(parameters['green_subtract'])
-		self.blue_sub = float(parameters['blue_subtract'])
-		self.content_weight = float(parameters['content_weight'])
-		self.style_weight = float(parameters['style_weight'])
-		self.total_variation_weight = float(parameters['total_variation_weight'])
+		self.red_sub = parameters['red_subtract']
+		self.green_sub = parameters['green_subtract']
+		self.blue_sub = parameters['blue_subtract']
+		self.content_weight = parameters['content_weight']
+		self.style_weight = parameters['style_weight']
+		self.total_variation_weight = parameters['total_variation_weight']
 		self.channel_count = 3
-		self.blend_content_ratio = float(parameters['blend_content_ratio'])
-		self.save_img= str(parameters['save_img'])
+		self.blend_content_ratio = parameters['blend_content_ratio']
 
 	def loadImages(self, content_path, style_path):
 		self.content_path = content_path
@@ -67,8 +66,8 @@ class NeuralStyle:
 		self.style_array[:, :, :, 2] -= self.blue_sub
 		self.style_array = self.style_array[:, :, :, ::-1]
 
-	def content_loss(self, content, combination):
-		return backend.sum(backend.square(combination - content))
+	def content_loss(self, content, style, combination):
+		return backend.sum(backend.square(combination - (self.blend_content_ratio * content + (1 - self.blend_content_ratio) * style)))
 
 	def style_loss(self, style, combination):
 		C = self.gram_matrix(style)
@@ -99,10 +98,11 @@ class NeuralStyle:
 		loss = backend.variable(0.)
 
 		layer_features = layers['block3_conv1']
+		style_image_features = layer_features[1, :, :, :]
 		content_image_features = layer_features[0, :, :, :]
 		combination_features = layer_features[2, :, :, :]
 
-		loss += self.content_weight * self.content_loss(content_image_features, combination_features)
+		loss += self.content_weight * self.content_loss(content_image_features, style_image_features, combination_features)
 
 		feature_layers = ['block1_conv1', 'block2_conv1', 'block3_conv1', 'block4_conv1', 'block5_conv1']
 		#feature_layers = ['block3_conv1', 'block3_conv3', 'block4_conv3', 'block5_conv1', 'block5_conv3']
@@ -131,7 +131,7 @@ class NeuralStyle:
 
 		for i in range(self.number_of_iterations):
 			if i%10 == 0:
-				self.showResult(x, save_img=True)
+				self.showResult(x)
 			print("Start of iteration: ", i)
 			start_time = time.time()
 			x, min_val, info = fmin_l_bfgs_b(self.loss, x.flatten(), fprime = self.grads, maxfun=4 * self.number_of_iterations)
@@ -180,8 +180,7 @@ class NeuralStyle:
 		img.show()
 
 		if save_img == True:
-			print("saving image to: {!s}".format(self.save_img))
-			img.save(self.save_img)
+			img.save('output.jpg')
 
 
 
@@ -197,8 +196,8 @@ if __name__ == "__main__":
 				"style_weight": 5.0,
 				"total_variation_weight": 1.0,
 				"iterations": 10.0, 					
-				"blend_content_ratio": 0.4,
-				"save_img": "output.jpg"
+				"blend_content_ratio": 0.95,
+				"output_image": "./output_image.jpg"
 			}
 
 	params = ["--width",
@@ -211,7 +210,7 @@ if __name__ == "__main__":
 				"--total_variation_weight",
 				"--iterations",
 				"--blend_content_ratio",
-				"--save_img"]
+				"--output_image"]
 
 	paramsDict = {"--width": "width" ,
 				"--height": "height",
@@ -223,7 +222,7 @@ if __name__ == "__main__":
 				"--total_variation_weight": "total_variation_weight",
 				"--iterations": "iterations",
 				"--blend_content_ratio": "blend_content_ratio",
-				"--save_img": "save_img"}
+				"--output_image": "output_image"}
 
 	print(sys.argv[0])
 
@@ -238,7 +237,7 @@ if __name__ == "__main__":
 			if sys.argv[i] not in params:
 				raise IndexError("Value not in parameters.")
 			else:
-				parameters[paramsDict[sys.argv[i]]] = sys.argv[i+1]
+				parameters[paramsDict[sys.argv[i]]] = float(sys.argv[i+1])
 
 	exp = NeuralStyle(parameters)
 	exp.loadImages(sys.argv[1], sys.argv[2])
