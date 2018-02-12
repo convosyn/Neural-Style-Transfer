@@ -6,8 +6,8 @@ To use type `python NeuralStyle.py <path-to-content-image> <path-to-style-image>
 
 For More Parameters Read `NeuralStyle.py`
 ## Screenshots
-<img src="./Output/Output10/output.jpg" alt="ScreenShot" width="360" height="280" />
-<img src="./Output/Output10/content_image_10.webp" alt="ScreenShot" width="180" height="120" />
+<img src="./Output/Output10/output.jpg" alt="ScreenShot" width="360" height="280" style="{display: inline-block;}"/>
+<img src="./Output/Output10/content_image_10.webp" alt="ScreenShot" width="180" height="120" style="{display: inline-block;}"/>
 <img src="./Output/Output10/style_image_11.jpg" alt="ScreenShot" width="180" height="120" />
 <img src="./Output/Output7/output.jpg" alt="ScreenShot" width="360" height="280" />
 <img src="./Output/Output7/content_image_7.jpg" alt="ScreenShot" width="180" height="120" />
